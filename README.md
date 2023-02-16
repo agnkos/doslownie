@@ -1,4 +1,4 @@
-# still worked at
+# still working at
 # literalnie (wordle) clone app
 
 # Getting Started with Create React App
