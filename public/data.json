@@ -1,0 +1,44 @@
+{
+    "solutions": [
+        {
+            "id": 1,
+            "word": "krowa"
+        },
+        {
+            "id": 2,
+            "word": "pasek"
+        },
+        {
+            "id": 3,
+            "word": "zamek"
+        },
+        {
+            "id": 4,
+            "word": "fotel"
+        },
+        {
+            "id": 5,
+            "word": "ekran"
+        },
+        {
+            "id": 6,
+            "word": "struś"
+        },
+        {
+            "id": 7,
+            "word": "worek"
+        },
+        {
+            "id": 8,
+            "word": "szary"
+        },
+        {
+            "id": 9,
+            "word": "bekać"
+        },
+        {
+            "id": 10,
+            "word": "ulewa"
+        }
+    ]
+}
