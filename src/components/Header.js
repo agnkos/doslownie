@@ -10,16 +10,16 @@ export default function Header() {
         <>
             <HeaderStyled>
                 <h1><span className="colored">.</span>dosłownie</h1>
-                <i class="fa-solid fa-square-poll-vertical" onClick={() => setShowStats(true)}></i>
+                <i className="fa-solid fa-square-poll-vertical" onClick={() => setShowStats(true)}></i>
             </HeaderStyled>
-                {showStats && (
-            <StyledModal>
+            {showStats && (
+                <StyledModal>
                     <div>
                         <div onClick={() => setShowStats(false)}><i className="fa-solid fa-circle-xmark"></i></div>
                         <Stats />
                     </div>
-            </StyledModal>
-                )}
+                </StyledModal>
+            )}
         </>
     )
 }

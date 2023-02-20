@@ -6,14 +6,17 @@ import Stats from "./Stats";
 export default function Modal() {
     const { solution, isSolution, turn, setNewGame, noGames, showAlert, showModal, setShowModal } = useContext(Context);
 
+    function getModal(e) {
+        if (e.key === 'Enter') {
+            setNewGame(true);
+        }
+    }
+
     useEffect(() => {
         if (showModal) {
-            window.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    setNewGame(true);
-                }
-            });
+            window.addEventListener('keydown', getModal)
         }
+        return () => window.removeEventListener('keydown', getModal);
     }, [showModal])
 
     return (
