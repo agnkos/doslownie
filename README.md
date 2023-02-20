@@ -2,7 +2,7 @@
 # literalnie (wordle) clone app
 
 **Link to the deployed project**:
-[Doslownie - netlify link](https://watchlist-reactjs.netlify.app/)
+[Doslownie - netlify link](https://doslownie.netlify.app/)
 
 #### Project description:
 - try to guess 5-letter Polish word (singular noun, infinitive verb, adjective in masculine singular form)
