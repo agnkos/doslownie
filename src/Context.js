@@ -186,20 +186,6 @@ function ContextProvider({ children }) {
         localStorage.setItem('wordleStats', JSON.stringify(stats));
     }, [stats]);
 
-    useEffect(() => {
-        console.log(guesses, turn, isSolution, solution)
-        console.log('newGame', newGame)
-        // console.log('is correct?', isCorrect)
-        // console.log(solution)
-        console.log('stats:', stats)
-        // console.log(usedKeys)
-        // console.log(usedKeys)
-        // console.log(turn)
-        // console.log('current guess', currentGuess, currentGuess.length)
-        // console.log(JSON.parse(localStorage.getItem('currentGame')))
-    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame]);
-
-
     return (
         <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal }}>
             {children}
