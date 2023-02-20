@@ -2,7 +2,6 @@ import Key from "./Key";
 import StyledKeypad from "../components/styles/Keypad.styled";
 
 export default function Keypad() {
-   
 
     const keypad = [
         ['Ą', 'Ć', 'Ę', 'Ł', 'Ó', 'Ś', 'Ń', 'Ż', 'Ź'],

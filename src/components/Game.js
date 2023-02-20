@@ -2,10 +2,11 @@ import { useContext, useEffect } from "react";
 import { Context } from "../Context";
 import Board from "./Board";
 import Keypad from "./Keypad";
+import Modal from "./Modal";
 
 export default function Game() {
 
-    const { solution, handleKeyup} = useContext(Context);
+    const { solution, handleKeyup, isSolution, turn, noGames, showModal } = useContext(Context);
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyup);
@@ -14,9 +15,9 @@ export default function Game() {
 
     return (
         <>
-            <p>rozwiązanie: {solution}</p>
             <Board />
             <Keypad />
+            {(isSolution || (!isSolution && turn === 5) || noGames || showModal) && <Modal />}
         </>
     )
 }

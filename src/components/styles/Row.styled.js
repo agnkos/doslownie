@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const StyledRow = styled.div`
-display: flex;
-gap: .5em;
-margin-bottom: .5em;
+  display: flex;
+  gap: .5em;
+  margin-bottom: .5em;
 
 div:nth-child(2) {
     animation-delay: 0.2s;

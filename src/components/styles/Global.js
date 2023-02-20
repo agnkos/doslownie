@@ -14,6 +14,11 @@ body {
   color: #070D0D;
 }
 
+h2, p {
+  margin: 0;
+  padding: 0;
+}
+
 img {
     display:block;
 }

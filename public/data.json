@@ -39,6 +39,366 @@
         {
             "id": 10,
             "word": "ulewa"
+        },
+        {
+            "id": 11,
+            "word": "bekać"
+        },
+        {
+            "id": 12,
+            "word": "korek"
+        },
+        {
+            "id": 13,
+            "word": "środa"
+        },
+        {
+            "id": 14,
+            "word": "kupić"
+        },
+        {
+            "id": 15,
+            "word": "taras"
+        },
+        {
+            "id": 16,
+            "word": "kolec"
+        },
+        {
+            "id": 17,
+            "word": "pudło"
+        },
+        {
+            "id": 18,
+            "word": "winny"
+        },
+        {
+            "id": 19,
+            "word": "fajka"
+        },
+        {
+            "id": 20,
+            "word": "wazon"
+        },
+        {
+            "id": 21,
+            "word": "iskra"
+        },
+        {
+            "id": 22,
+            "word": "sonda"
+        },
+        {
+            "id": 23,
+            "word": "szyna"
+        },
+        {
+            "id": 24,
+            "word": "proca"
+        },
+        {
+            "id": 25,
+            "word": "beret"
+        },
+        {
+            "id": 26,
+            "word": "twarz"
+        },
+        {
+            "id": 27,
+            "word": "wiatr"
+        },
+        {
+            "id": 28,
+            "word": "album"
+        },
+        {
+            "id": 29,
+            "word": "ważka"
+        },
+        {
+            "id": 30,
+            "word": "trema"
+        },
+        {
+            "id": 31,
+            "word": "kabel"
+        },
+        {
+            "id": 32,
+            "word": "szron"
+        },
+        {
+            "id": 33,
+            "word": "lokal"
+        },
+        {
+            "id": 34,
+            "word": "wrota"
+        },
+        {
+            "id": 35,
+            "word": "szewc"
+        },
+        {
+            "id": 36,
+            "word": "broda"
+        },
+        {
+            "id": 37,
+            "word": "nieść"
+        },
+        {
+            "id": 38,
+            "word": "leżak"
+        },
+        {
+            "id": 39,
+            "word": "lampa"
+        },
+        {
+            "id": 40,
+            "word": "miska"
+        },
+        {
+            "id": 41,
+            "word": "komin"
+        },
+        {
+            "id": 42,
+            "word": "teatr"
+        },
+        {
+            "id": 43,
+            "word": "odjąć"
+        },
+        {
+            "id": 44,
+            "word": "kreda"
+        },
+        {
+            "id": 45,
+            "word": "forma"
+        },
+        {
+            "id": 46,
+            "word": "notes"
+        },
+        {
+            "id": 47,
+            "word": "skłon"
+        },
+        {
+            "id": 48,
+            "word": "klucz"
+        },
+        {
+            "id": 49,
+            "word": "zimny"
+        },
+        {
+            "id": 50,
+            "word": "firma"
+        },
+        {
+            "id": 51,
+            "word": "banan"
+        },
+        {
+            "id": 52,
+            "word": "szafa"
+        },
+        {
+            "id": 53,
+            "word": "regał"
+        },
+        {
+            "id": 54,
+            "word": "półka"
+        },
+        {
+            "id": 55,
+            "word": "zegar"
+        },
+        {
+            "id": 56,
+            "word": "szyba"
+        },
+        {
+            "id": 57,
+            "word": "kopać"
+        },
+        {
+            "id": 58,
+            "word": "koala"
+        },
+        {
+            "id": 59,
+            "word": "kolor"
+        },
+        {
+            "id": 60,
+            "word": "rzęsa"
+        },
+        {
+            "id": 61,
+            "word": "misja"
+        },
+        {
+            "id": 62,
+            "word": ""
+        },
+        {
+            "id": 63,
+            "word": "radar"
+        },
+        {
+            "id": 64,
+            "word": "talon"
+        },
+        {
+            "id": 65,
+            "word": "obrus"
+        },
+        {
+            "id": 66,
+            "word": "wolny"
+        },
+        {
+            "id": 67,
+            "word": "żółty"
+        },
+        {
+            "id": 68,
+            "word": "pchać"
+        },
+        {
+            "id": 69,
+            "word": "linia"
+        },
+        {
+            "id": 70,
+            "word": "motek"
+        },
+        {
+            "id": 71,
+            "word": "klasa"
+        },
+        {
+            "id": 72,
+            "word": "kadra"
+        },
+        {
+            "id": 73,
+            "word": "grupa"
+        },
+        {
+            "id": 74,
+            "word": "hotel"
+        },
+        {
+            "id": 75,
+            "word": "deser"
+        },
+        {
+            "id": 76,
+            "word": "dieta"
+        },
+        {
+            "id": 77,
+            "word": "banał"
+        },
+        {
+            "id": 78,
+            "word": "biały"
+        },
+        {
+            "id": 79,
+            "word": "bryła"
+        },
+        {
+            "id": 80,
+            "word": "czara"
+        },
+        {
+            "id": 81,
+            "word": "córka"
+        },
+        {
+            "id": 82,
+            "word": "dzień"
+        },
+        {
+            "id": 83,
+            "word": "epoka"
+        },
+        {
+            "id": 84,
+            "word": "gąbka"
+        },
+        {
+            "id": 85,
+            "word": "humor"
+        },
+        {
+            "id": 86,
+            "word": "jajko"
+        },
+        {
+            "id": 87,
+            "word": "sosna"
+        },
+        {
+            "id": 88,
+            "word": "kciuk"
+        },
+        {
+            "id": 89,
+            "word": "palec"
+        },
+        {
+            "id": 90,
+            "word": "koral"
+        },
+        {
+            "id": 91,
+            "word": "krzak"
+        },
+        {
+            "id": 92,
+            "word": "kubek"
+        },
+        {
+            "id": 93,
+            "word": "lasso"
+        },
+        {
+            "id": 94,
+            "word": "maszt"
+        },
+        {
+            "id": 95,
+            "word": "łyżka"
+        },
+        {
+            "id": 96,
+            "word": "model"
+        },
+        {
+            "id": 97,
+            "word": "numer"
+        },
+        {
+            "id": 98,
+            "word": "osioł"
+        },
+        {
+            "id": 99,
+            "word": "pisać"
+        },
+        {
+            "id": 100,
+            "word": "robot"
         }
     ]
 }

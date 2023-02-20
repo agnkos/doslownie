@@ -1,29 +1,50 @@
 import { createContext, useState, useEffect } from "react";
+import dictionary from "./dictionary";
 
 const Context = createContext();
 
 function ContextProvider({ children }) {
     const [solution, setSolution] = useState(null);
+    const [solutionId, setSolutionId] = useState(null)
     const [currentGuess, setCurrentGuess] = useState('');
     const [turn, setTurn] = useState(0);
-    const [guesses, setGuesses] = useState([...Array(6)].fill({ id: '', input: '', formatted: [...Array(5).fill({ key: '', color: '' })] }).map((item, i) => ({ ...item, id: i + 1, })));
-    const [isCorrect, setIsCorrect] = useState(false);
+    const [guesses, setGuesses] = useState(
+        [...Array(6)].fill({ id: '', input: '', formatted: [...Array(5).fill({ key: '', color: '' })] }).map((item, i) => ({ ...item, id: i + 1, }))
+    )
+    const [isSolution, setIsSolution] = useState(false);
     const [usedKeys, setUsedKeys] = useState({});
-
+    const [stats, setStats] = useState(function () {
+        return JSON.parse(localStorage.getItem('wordleStats')) || []
+    });
+    const [newGame, setNewGame] = useState(false);
+    const [noGames, setNoGames] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
+
         fetch('data.json')
             .then(res => res.json())
             .then(data => {
-                const randomSolution = data.solutions[Math.floor(Math.random() * data.solutions.length)];
+                const filteredSolutions = data.solutions.filter(item => !stats.some(result => result.id === item.id))
+                if (filteredSolutions.length === 0) {
+                    setNoGames(true);
+                    return;
+                }
+                const randomSolution = filteredSolutions[Math.floor(Math.random() * filteredSolutions.length)];
                 setSolution(randomSolution.word);
+                setSolutionId(randomSolution.id);
+                setIsSolution(false);
+                setCurrentGuess('');
+                setGuesses([...Array(6)].fill({ id: '', input: '', formatted: [...Array(5).fill({ key: '', color: '' })] }).map((item, i) => ({ ...item, id: i + 1, })));
+                setTurn(0);
+                setNewGame(false);
+                setUsedKeys({});
+
             })
-    }, []);
+
+    }, [newGame]);
 
     function handleKeyup({ key }) {
-        // console.log(key)
-        // console.log(/^[A-Ża-ż]$/.test(key))
-        // console.log(/^[A-Za-ząĄćĆęĘłŁńŃóÓśŚżŻźŹ]$/.test(key))
         if (/^[A-Za-ząĄćĆęĘłŁńŃóÓśŚżŻźŹ]$/.test(key)) {
             if (currentGuess.length < 5) {
                 setCurrentGuess(prev => prev + key.toLowerCase());
@@ -36,14 +57,6 @@ function ContextProvider({ children }) {
             return;
         }
         if (key === 'Enter') {
-            if (turn > 5) {
-                return;
-            }
-            // if (guesses.includes(currentGuess)) { // niedziała
-            //     console.log('juz wpisane')
-            //     return;
-            // }
-
             if (guesses.filter(item => item.input === currentGuess).length > 1) {
                 console.log('juz wpisane');
                 return;
@@ -51,22 +64,22 @@ function ContextProvider({ children }) {
             if (currentGuess.length !== 5) {
                 return;
             }
-            // setGuesses(prev => {
-            //     const updatedGuesses = prev.map((guess, i) => i === turn ? { ...guess, input: currentGuess } : guess);
-            //     return updatedGuesses;
-            // })
-            // setTurn(prev => prev + 1);
-            checkGuess();
-            // setCurrentGuess('');
-            //dodac slownik
-            //dodać checkguesses - czy rozwiazane, koloruje
+            if (dictionary.includes(currentGuess.toUpperCase())) {
+                checkGuess();
+            } else {
+                console.log('nie znaleziono słowa')
+                setShowModal(true);
+                setTimeout(() => setShowModal(false), 1000);
+                return;
+            }
         }
     }
 
     function handleClick(key) {
-        if (currentGuess.length < 5) {
-            setCurrentGuess(prev => prev + key.toLowerCase());
-            console.log(currentGuess)
+        if (key !== 'Enter' && key !== 'Back') {
+            if (currentGuess.length < 5) {
+                setCurrentGuess(prev => prev + key.toLowerCase());
+            }
         }
         if (key === 'Back') {
             setCurrentGuess((prev) => {
@@ -75,9 +88,6 @@ function ContextProvider({ children }) {
             return;
         }
         if (key === 'Enter') {
-            if (turn > 5) {
-                return;
-            }
             if (guesses.filter(item => item.input === currentGuess).length > 1) {
                 console.log('juz wpisane');
                 return;
@@ -85,28 +95,19 @@ function ContextProvider({ children }) {
             if (currentGuess.length !== 5) {
                 return;
             }
-            checkGuess();
+            if (dictionary.includes(currentGuess.toUpperCase())) {
+                checkGuess();
+            } else {
+                console.log('nie znaleziono słowa');
+                setShowModal(true);
+                setTimeout(() => setShowModal(false), 1000);
+                return;
+            }
         }
     }
 
     function checkGuess() {
         let solutionArray = [...solution];
-
-        // let checkedGuess = guesses[turn].formatted.map((item, i) => {
-        //     if (item.key === solutionArray[i]) {
-        //         solutionArray[i] = null;
-        //         console.log(solutionArray)
-        //         return { ...item, color: 'green' }
-        //     }
-        // })
-
-        // guesses[turn].formatted.map((item, i) => {
-        //     if (solutionArray.includes(item.key) && item.color !== 'green') {
-        //         solutionArray[solutionArray.indexOf(item.key)] = null;
-        //         return { ...item, color: 'yellow' };
-        //     }
-        //     else return { ...item, color: 'gray' }
-        // })
 
         let checkedGuess = guesses[turn].formatted
         checkedGuess.forEach((item, i) => {
@@ -130,7 +131,7 @@ function ContextProvider({ children }) {
         setGuesses(prev => prev.map((guess, i) => turn === i ? { ...guess, formatted: checkedGuess } : guess));
 
         setUsedKeys((prev) => {
-            let newKeys = [{ ...prev }];
+            let newKeys = { ...prev };
             checkedGuess.forEach((l) => {
                 const currentColor = newKeys[l.key];
                 if (l.color === 'green') {
@@ -141,41 +142,48 @@ function ContextProvider({ children }) {
                     newKeys[l.key] = 'yellow';
                     return;
                 }
-                if (l.color === 'grey' && currentColor !== 'green' && currentColor !== 'yellow') {
-                    newKeys[l.key] = 'grey';
+                if (l.color === 'gray' && currentColor !== 'green' && currentColor !== 'yellow') {
+                    newKeys[l.key] = 'gray';
                     return;
                 }
             })
             return newKeys;
         })
 
+
         if (currentGuess === solution) {
-            setIsCorrect(true);
+            setIsSolution(true);
+            setStats(prev => {
+                return [...prev, { id: solutionId, turn: turn + 1, win: true }]
+            });
+            return;
+        }
+
+        if (turn === 5 && currentGuess !== solution) {
+            setIsSolution(false);
+            setStats(prev => {
+                return [...prev, { id: solutionId, turn: turn + 1, win: false }]
+            });
             return;
         }
         setTurn(prev => prev + 1);
         setCurrentGuess('');
+
     }
-
-
-
-
-    useEffect(() => {
-        console.log(guesses, turn)
-        console.log(usedKeys)
-        // console.log(turn)
-        // console.log('current guess', currentGuess, currentGuess.length)
-    }, [guesses, turn, currentGuess, usedKeys]);
 
     useEffect(() => {
         setGuesses(prev => {
             const updatedGuesses = prev.map((guess, i) => i === turn ? { ...guess, input: currentGuess, formatted: currentGuess.split('').map((lettter) => ({ key: lettter, color: '' })) } : guess);
             return updatedGuesses;
         })
-    }, [currentGuess, turn])
+    }, [currentGuess, turn]);
+
+    useEffect(() => {
+        localStorage.setItem('wordleStats', JSON.stringify(stats));
+    }, [stats])
 
     return (
-        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys }}>
+        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showModal, stats }}>
             {children}
         </Context.Provider>
     )
