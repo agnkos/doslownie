@@ -18,6 +18,7 @@ function ContextProvider({ children }) {
     });
     const [newGame, setNewGame] = useState(false);
     const [noGames, setNoGames] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -68,8 +69,8 @@ function ContextProvider({ children }) {
                 checkGuess();
             } else {
                 console.log('nie znaleziono słowa')
-                setShowModal(true);
-                setTimeout(() => setShowModal(false), 1000);
+                setShowAlert(true);
+                setTimeout(() => setShowAlert(false), 1000);
                 return;
             }
         }
@@ -99,8 +100,8 @@ function ContextProvider({ children }) {
                 checkGuess();
             } else {
                 console.log('nie znaleziono słowa');
-                setShowModal(true);
-                setTimeout(() => setShowModal(false), 1000);
+                setShowAlert(true);
+                setTimeout(() => setShowAlert(false), 1000);
                 return;
             }
         }
@@ -156,14 +157,16 @@ function ContextProvider({ children }) {
             setStats(prev => {
                 return [...prev, { id: solutionId, turn: turn + 1, win: true }]
             });
+            setTimeout(() => setShowModal(true), 2000);
             return;
         }
 
-        if (turn === 5 && currentGuess !== solution) {
+        if (turn === 6 && currentGuess !== solution) {
             setIsSolution(false);
             setStats(prev => {
                 return [...prev, { id: solutionId, turn: turn + 1, win: false }]
             });
+            setTimeout(() => setShowModal(true), 2000);
             return;
         }
         setTurn(prev => prev + 1);
@@ -180,10 +183,24 @@ function ContextProvider({ children }) {
 
     useEffect(() => {
         localStorage.setItem('wordleStats', JSON.stringify(stats));
-    }, [stats])
+    }, [stats]);
+
+    useEffect(() => {
+        console.log(guesses, turn, isSolution, solution)
+
+        // console.log('is correct?', isCorrect)
+        // console.log(solution)
+        console.log('stats:', stats)
+        // console.log(usedKeys)
+        // console.log(usedKeys)
+        // console.log(turn)
+        // console.log('current guess', currentGuess, currentGuess.length)
+        // console.log(JSON.parse(localStorage.getItem('currentGame')))
+    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames]);
+
 
     return (
-        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showModal, stats }}>
+        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal }}>
             {children}
         </Context.Provider>
     )

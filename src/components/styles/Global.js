@@ -22,9 +22,5 @@ h2, p {
 img {
     display:block;
 }
-
-.colored {
-  color: #8ac926;
-}
 `
 export default GlobalStyles;

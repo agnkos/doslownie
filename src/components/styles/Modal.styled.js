@@ -12,7 +12,7 @@ const StyledModal = styled.div`
     justify-items: center;
 
 > div {
-    max-width: 400px;
+    max-width: 450px;
     background: #fff;
     padding: 40px;
     border-radius: 10px;
@@ -20,7 +20,15 @@ const StyledModal = styled.div`
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
-
+.fa-circle-xmark{
+    display: block;
+    width: 15px; 
+    margin-left: auto;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #070D0D;
+    cursor: pointer;
+}
 .solution {
     font-size: 1.25rem;
     font-weight: 700;
