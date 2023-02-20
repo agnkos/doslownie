@@ -38,7 +38,6 @@ function ContextProvider({ children }) {
                 setCurrentGuess('');
                 setGuesses([...Array(6)].fill({ id: '', input: '', formatted: [...Array(5).fill({ key: '', color: '' })] }).map((item, i) => ({ ...item, id: i + 1, })));
                 setTurn(0);
-                setNewGame(false);
                 setUsedKeys({});
 
             })
@@ -157,6 +156,7 @@ function ContextProvider({ children }) {
             setStats(prev => {
                 return [...prev, { id: solutionId, turn: turn + 1, win: true }]
             });
+            setNewGame(false);
             setTimeout(() => setShowModal(true), 2000);
             return;
         }
@@ -166,6 +166,7 @@ function ContextProvider({ children }) {
             setStats(prev => {
                 return [...prev, { id: solutionId, turn: turn + 1, win: false }]
             });
+            setNewGame(false);
             setTimeout(() => setShowModal(true), 2000);
             return;
         }
@@ -187,7 +188,7 @@ function ContextProvider({ children }) {
 
     useEffect(() => {
         console.log(guesses, turn, isSolution, solution)
-
+        console.log('newGame', newGame)
         // console.log('is correct?', isCorrect)
         // console.log(solution)
         console.log('stats:', stats)
@@ -196,7 +197,7 @@ function ContextProvider({ children }) {
         // console.log(turn)
         // console.log('current guess', currentGuess, currentGuess.length)
         // console.log(JSON.parse(localStorage.getItem('currentGame')))
-    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames]);
+    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame]);
 
 
     return (
