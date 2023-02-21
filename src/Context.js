@@ -40,6 +40,7 @@ function ContextProvider({ children }) {
                 setTurn(0);
                 setUsedKeys({});
                 setShowModal(false);
+                setShowStats(false);
             })
     }
 
