@@ -4,20 +4,20 @@ import { Context } from "../Context";
 import Stats from "./Stats";
 
 export default function Modal() {
-    const { solution, isSolution, turn, setNewGame, noGames, showAlert, showModal, setShowModal } = useContext(Context);
+    const { solution, isSolution, turn, setNewGame, noGames, showAlert, showModal, setShowModal, startGame } = useContext(Context);
 
-    function getModal(e) {
-        if (e.key === 'Enter') {
-            setNewGame(true);
-        }
-    }
+    // function getModal(e) {
+    //     if (e.key === 'Enter') {
+    //         setNewGame(true);
+    //     }
+    // }
 
-    useEffect(() => {
-        if (showModal) {
-            window.addEventListener('keydown', getModal)
-        }
-        return () => window.removeEventListener('keydown', getModal);
-    }, [showModal])
+    // useEffect(() => {
+    //     if (showModal) {
+    //         window.addEventListener('keydown', getModal)
+    //     }
+    //     return () => window.removeEventListener('keydown', getModal);
+    // }, [showModal])
 
     return (
         <StyledModal>
@@ -28,7 +28,7 @@ export default function Modal() {
                     <h2>Gratulacje!</h2>
                     <p>Wygrana w {turn + 1} próbie.</p>
                     <Stats />
-                    <button onClick={() => setNewGame(true)}>New Game</button>
+                    <button onClick={() => startGame()}>New Game</button>
                 </div>
             )}
             {((!isSolution && turn === 6) && showModal) && (
@@ -37,7 +37,7 @@ export default function Modal() {
                     <p className="solution">{solution}</p>
                     <h2>Spróbuj jeszcze raz!</h2>
                     <Stats />
-                    <button onClick={() => setNewGame(true)}>New Game</button>
+                    <button onClick={() => startGame()}>New Game</button>
                 </div>
             )}
             {noGames && (

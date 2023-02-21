@@ -21,8 +21,8 @@ const KeyStyled = styled.div`
     color: #eee;
 } 
 &.yellow {
-    background-color: #f3de2c;
-    border-color: #f3de2c;
+    background-color: #ffbe0b;
+    border-color: #ffbe0b;
     color: #eee;
 } 
 &.gray {
