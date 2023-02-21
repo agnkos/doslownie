@@ -41,14 +41,14 @@ const bounce = keyframes`
 `
 
 const StyledTile = styled.div`
-height: 3em;
-width: 3em;
+height: 3rem;
+width: 3rem;
 display: flex;
 align-items: center;
 justify-content: center;
 border: 1px solid #b7b7a4;
-padding: .25em;
 border-radius: 5px;
+font-size: 1.5rem;
 font-weight: 700;
 text-transform: uppercase;
 
@@ -63,7 +63,11 @@ text-transform: uppercase;
   animation: ${({ color }) => flip(color)} .5s ease forwards;
 }
 
+@media (max-width: 450px) {
+  height: 2.5rem;
+  width: 2.5rem;
 }
+
 
 `
 export default StyledTile;

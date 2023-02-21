@@ -47,30 +47,6 @@ function ContextProvider({ children }) {
         startGame();
     }, [])
 
-
-    // useEffect(() => {
-
-    //     fetch('data.json')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             const filteredSolutions = data.solutions.filter(item => !stats.some(result => result.id === item.id))
-    //             if (filteredSolutions.length === 0) {
-    //                 setNoGames(true);
-    //                 return;
-    //             }
-    //             const randomSolution = filteredSolutions[Math.floor(Math.random() * filteredSolutions.length)];
-    //             setSolution(randomSolution.word);
-    //             setSolutionId(randomSolution.id);
-    //             setIsSolution(false);
-    //             setCurrentGuess('');
-    //             setGuesses([...Array(6)].fill({ id: '', input: '', formatted: [...Array(5).fill({ key: '', color: '' })] }).map((item, i) => ({ ...item, id: i + 1, })));
-    //             setTurn(0);
-    //             setUsedKeys({});
-    //             setShowModal(false);
-    //         })
-
-    // }, [newGame]);
-
     function handleKeyup({ key }) {
         if (/^[A-Za-ząĄćĆęĘłŁńŃóÓśŚżŻźŹ]$/.test(key)) {
             if (currentGuess.length < 5) {
@@ -189,7 +165,7 @@ function ContextProvider({ children }) {
         }
 
         setTurn(prev => prev + 1);
-        
+
         if (turn === 5 && currentGuess !== solution) {
             setIsSolution(false);
             setStats(prev => {
@@ -228,7 +204,7 @@ function ContextProvider({ children }) {
         // console.log(turn)
         // console.log('current guess', currentGuess, currentGuess.length)
         // console.log(JSON.parse(localStorage.getItem('currentGame')))
-    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame]);
+    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame, showModal]);
 
 
     return (

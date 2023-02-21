@@ -48,6 +48,22 @@ button {
     letter-spacing: 1px;
     cursor: pointer;
 }
+
+@media (max-width: 450px) {
+    > div {
+    max-width: 85%;
+    padding: 1em;
+
+    }
+
+    .fa-circle-xmark{ 
+        margin-right: .25em;
+    }
+
+    h3 {
+        margin: .5em;
+    }
+}
 `
 
 export default StyledModal;

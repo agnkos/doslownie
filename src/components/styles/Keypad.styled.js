@@ -13,6 +13,14 @@ const StyledKeypad = styled.div`
     gap: .5em;
     justify-content: center;
 }
+
+@media (max-width: 450px) {
+    > div {
+        gap: .25em;
+    }
+
+    gap: .4em;
+}
 `
 
 export default StyledKeypad;

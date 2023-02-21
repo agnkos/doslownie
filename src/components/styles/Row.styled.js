@@ -21,6 +21,7 @@ div:nth-child(3) {
     animation-delay: 0.8s;
   }
 
+
 `
 
 export default StyledRow;

@@ -1,10 +1,10 @@
 import StyledModal from "./styles/Modal.styled";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { Context } from "../Context";
 import Stats from "./Stats";
 
 export default function Modal() {
-    const { solution, isSolution, turn, setNewGame, noGames, showAlert, showModal, setShowModal, startGame } = useContext(Context);
+    const { solution, isSolution, turn, noGames, showAlert, showModal, setShowModal, startGame } = useContext(Context);
 
     // function getModal(e) {
     //     if (e.key === 'Enter') {
@@ -28,7 +28,7 @@ export default function Modal() {
                     <h2>Gratulacje!</h2>
                     <p>Wygrana w {turn + 1} próbie.</p>
                     <Stats />
-                    <button onClick={() => startGame()}>New Game</button>
+                    {/* <button onClick={() => startGame()}>New Game</button> */}
                 </div>
             )}
             {((!isSolution && turn === 6) && showModal) && (
@@ -37,7 +37,7 @@ export default function Modal() {
                     <p className="solution">{solution}</p>
                     <h2>Spróbuj jeszcze raz!</h2>
                     <Stats />
-                    <button onClick={() => startGame()}>New Game</button>
+                    {/* <button onClick={() => startGame()}>New Game</button> */}
                 </div>
             )}
             {noGames && (

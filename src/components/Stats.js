@@ -4,7 +4,7 @@ import { StatStyled, ProgressDivStyled, ProgressBarStyled } from "./styles/Stats
 
 export default function Stats() {
 
-    const { stats } = useContext(Context);
+    const { stats, startGame } = useContext(Context);
 
     const wins = stats.filter(item => item.win === true).length;
     const turnOne = stats.filter(item => item.turn === 1).length;
@@ -52,6 +52,7 @@ export default function Stats() {
                     <span>{turnSix}</span>
                 </StatStyled>
             </div>
+            <button onClick={() => startGame()}>New Game</button>
         </div>
     )
 }
