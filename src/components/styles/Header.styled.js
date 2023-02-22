@@ -26,6 +26,13 @@ h1 {
 .fa-square-poll-vertical:hover {
     color: #8ac926;
 }
+
+@media (max-width: 330px) {
+   h1 {
+    font-size: 1.75rem;
+    margin: .5em;
+   }
+}
 `
 
 export default HeaderStyled;

@@ -193,19 +193,19 @@ function ContextProvider({ children }) {
 
 
 
-    useEffect(() => {
-        console.log(guesses, turn, isSolution, solution)
-        console.log('newGame', newGame)
-        // console.log('is correct?', isCorrect)
-        // console.log(solution)
-        console.log('stats:', stats)
-        console.log('modal', showModal)
-        // console.log(usedKeys)
-        // console.log(usedKeys)
-        // console.log(turn)
-        // console.log('current guess', currentGuess, currentGuess.length)
-        // console.log(JSON.parse(localStorage.getItem('currentGame')))
-    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame, showModal]);
+    // useEffect(() => {
+    //     console.log(guesses, turn, isSolution, solution)
+    //     console.log('newGame', newGame)
+    //     // console.log('is correct?', isCorrect)
+    //     // console.log(solution)
+    //     console.log('stats:', stats)
+    //     console.log('modal', showModal)
+    //     // console.log(usedKeys)
+    //     // console.log(usedKeys)
+    //     // console.log(turn)
+    //     // console.log('current guess', currentGuess, currentGuess.length)
+    //     // console.log(JSON.parse(localStorage.getItem('currentGame')))
+    // }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame, showModal]);
 
 
     return (

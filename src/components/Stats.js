@@ -53,7 +53,7 @@ export default function Stats() {
                     <span>{turnSix}</span>
                 </StatStyled>
             </div>
-            <button onClick={() => startGame()}>New Game</button>
+            <button onClick={() => startGame()}>Nowa gra</button>
         </div>
     )
 }

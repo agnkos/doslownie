@@ -21,6 +21,10 @@ div:nth-child(3) {
     animation-delay: 0.8s;
   }
 
+@media (max-width: 330px) {
+  gap: .25em;  
+  margin-bottom: .25em;
+}
 
 `
 

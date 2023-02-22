@@ -30,6 +30,14 @@ const KeyStyled = styled.div`
     border-color: #b7b7a4;
     color: #eee;
 } 
+
+@media (max-width: 330px) {
+    height: 2em;
+    }
+
+@media (max-width: 450px) {
+height: 2.75em;
+}
 `
 
 export default KeyStyled;
