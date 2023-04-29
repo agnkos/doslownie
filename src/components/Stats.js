@@ -7,7 +7,7 @@ export default function Stats() {
     const { stats, startGame } = useContext(Context);
 
     const wins = stats.filter(item => item.win === true);
-    console.log(wins)
+    // console.log(wins)
     const turnOne = wins.filter(item => item.turn === 1).length;
     const turnTwo = wins.filter(item => item.turn === 2).length;
     const turnThree = wins.filter(item => item.turn === 3).length;

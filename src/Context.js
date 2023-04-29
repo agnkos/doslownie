@@ -4,12 +4,18 @@ import dictionary from "./dictionary";
 const Context = createContext();
 
 function ContextProvider({ children }) {
-    const [solution, setSolution] = useState(null);
+    const [solution, setSolution] = useState(JSON.parse(localStorage.getItem('wordleCurrentSolution')) || null);
     const [solutionId, setSolutionId] = useState(null)
     const [currentGuess, setCurrentGuess] = useState('');
-    const [turn, setTurn] = useState(0);
-    const [guesses, setGuesses] = useState(
-        [...Array(6)].fill({ id: '', input: '', formatted: [...Array(5).fill({ key: '', color: '' })] }).map((item, i) => ({ ...item, id: i + 1, }))
+    const [turn, setTurn] = useState(function () {
+        return JSON.parse(localStorage.getItem('wordleCurrentTurn')) || 0
+        // return JSON.parse(localStorage.getItem('wordleCurrentGame'))?.find(item => item.input === "").id - 1 || 0
+    }
+    );
+    const [guesses, setGuesses] = useState(function () {
+        return JSON.parse(localStorage.getItem('wordleCurrentGame')) ||
+            [...Array(6)].fill({ id: '', input: '', formatted: [...Array(5).fill({ key: '', color: '' })] }).map((item, i) => ({ ...item, id: i + 1, }))
+    }
     )
     const [isSolution, setIsSolution] = useState(false);
     const [usedKeys, setUsedKeys] = useState({});
@@ -45,10 +51,14 @@ function ContextProvider({ children }) {
     }
 
     useEffect(() => {
-        startGame();
+        if (!JSON.parse(localStorage.getItem('wordleCurrentGame'))) {
+            startGame();
+        }
     }, [])
 
     function handleKeyup({ key }) {
+        if (isSolution) return;
+        // if(key === 'Enter' && showModal) startGame();
         if (/^[A-Za-ząĄćĆęĘłŁńŃóÓśŚżŻźŹ]$/.test(key)) {
             if (currentGuess.length < 5) {
                 setCurrentGuess(prev => prev + key.toLowerCase());
@@ -61,6 +71,7 @@ function ContextProvider({ children }) {
             return;
         }
         if (key === 'Enter') {
+            // if (showModal && isSolution) startGame();
             if (guesses.filter(item => item.input === currentGuess).length > 1) {
                 console.log('juz wpisane');
                 return;
@@ -80,6 +91,7 @@ function ContextProvider({ children }) {
     }
 
     function handleClick(key) {
+        if (isSolution) return;
         if (key !== 'Enter' && key !== 'Back') {
             if (currentGuess.length < 5) {
                 setCurrentGuess(prev => prev + key.toLowerCase());
@@ -162,6 +174,7 @@ function ContextProvider({ children }) {
             });
             setNewGame(false);
             setTimeout(() => setShowModal(true), 2000);
+            localStorage.removeItem('wordleCurrentGame');
             return;
         }
 
@@ -174,6 +187,7 @@ function ContextProvider({ children }) {
             });
             setNewGame(false);
             setTimeout(() => setShowModal(true), 2000);
+            localStorage.removeItem('wordleCurrentGame');
             return;
         }
         setCurrentGuess('');
@@ -185,27 +199,33 @@ function ContextProvider({ children }) {
             const updatedGuesses = prev.map((guess, i) => i === turn ? { ...guess, input: currentGuess, formatted: currentGuess.split('').map((lettter) => ({ key: lettter, color: '' })) } : guess);
             return updatedGuesses;
         })
+        localStorage.setItem('wordleCurrentGame', JSON.stringify(guesses))
+        // przenieść stąd solution
+        localStorage.setItem('wordleCurrentSolution', JSON.stringify(solution))
+        localStorage.setItem('wordleCurrentTurn', JSON.stringify(turn))
     }, [currentGuess, turn]);
 
     useEffect(() => {
         localStorage.setItem('wordleStats', JSON.stringify(stats));
-    }, [stats]);
+    }, [stats, guesses]);
 
+    // console.log(JSON.parse(localStorage.getItem('wordleCurrentGame'))?.find(item => item.input === "").id)
 
-
-    // useEffect(() => {
-    //     console.log(guesses, turn, isSolution, solution)
-    //     console.log('newGame', newGame)
-    //     // console.log('is correct?', isCorrect)
-    //     // console.log(solution)
-    //     console.log('stats:', stats)
-    //     console.log('modal', showModal)
-    //     // console.log(usedKeys)
-    //     // console.log(usedKeys)
-    //     // console.log(turn)
-    //     // console.log('current guess', currentGuess, currentGuess.length)
-    //     // console.log(JSON.parse(localStorage.getItem('currentGame')))
-    // }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame, showModal]);
+    useEffect(() => {
+        // console.log(guesses, turn, isSolution, solution)
+        console.log(guesses)
+        // console.log('newGame', newGame)
+        // console.log('is correct?', isCorrect)
+        console.log(solution)
+        // console.log('stats:', stats)
+        // console.log('modal', showModal)
+        // console.log(usedKeys)
+        // console.log(usedKeys)
+        console.log(turn)
+        // console.log(currentGuess === solution)
+        console.log('current guess', currentGuess, currentGuess.length)
+        // console.log(JSON.parse(localStorage.getItem('currentGame')))
+    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame, showModal, currentGuess]);
 
 
     return (
