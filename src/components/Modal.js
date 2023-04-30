@@ -1,10 +1,12 @@
 import StyledModal from "./styles/Modal.styled";
-import { useContext} from "react";
+import { useContext } from "react";
 import { Context } from "../Context";
 import Stats from "./Stats";
 
+import Confetti from 'react-confetti';
+
 export default function Modal() {
-    const { solution, isSolution, turn, noGames, showAlert, showModal, setShowModal, startGame } = useContext(Context);
+    const { solution, isSolution, turn, noGames, showAlert, showModal, setShowModal } = useContext(Context);
 
     // function getModal(e) {
     //     if (e.key === 'Enter') {
@@ -28,6 +30,7 @@ export default function Modal() {
                     <h2>Gratulacje!</h2>
                     <p>Wygrana w {turn + 1} próbie.</p>
                     <Stats />
+                    <Confetti />
                     {/* <button onClick={() => startGame()}>New Game</button> */}
                 </div>
             )}

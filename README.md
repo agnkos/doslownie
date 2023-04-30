@@ -8,6 +8,7 @@
 - try to guess 5-letter Polish word (singular noun, infinitive verb, adjective in masculine singular form)
 - checking words with vocabulary
 - displaying stats (saved in localStorage)
+- saving current, unfinished game 
 - built with:
  ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
