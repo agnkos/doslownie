@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Context } from "../Context";
 import StyledModal from "./styles/Modal.styled";
 import { StyledSwitch } from "./styles/Switch.styled";
-import Switch from "./Switch";
+
 
 
 export default function Settings() {
@@ -22,7 +22,6 @@ export default function Settings() {
                 <div onClick={() => setSettings(false)}><i className="fa-solid fa-circle-xmark"></i></div>
                 <h3>Ustawienia</h3>
                 <h4>Dark mode</h4>
-                {/* <Switch toggleTheme={toggleTheme} theme={theme} /> */}
                 <StyledSwitch theme={theme}>
                     <input type="checkbox" onChange={toggleTheme} />
                     <span />
