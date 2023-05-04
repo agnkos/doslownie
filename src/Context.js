@@ -27,6 +27,8 @@ function ContextProvider({ children }) {
     const [showAlert, setShowAlert] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showStats, setShowStats] = useState(false);
+    const [settings, setSettings] = useState(false);
+    const [theme, setTheme] = useState('light')
 
     function startGame() {
         fetch('data.json')
@@ -229,7 +231,7 @@ function ContextProvider({ children }) {
 
 
     return (
-        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal, showStats, setShowStats, startGame }}>
+        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal, showStats, setShowStats, startGame, settings, setSettings, theme, setTheme }}>
             {children}
         </Context.Provider>
     )

@@ -4,6 +4,9 @@ const KeyStyled = styled.div`
     width: 2em;
     height: 2em;
     border: 1px solid black;
+    border-width: 1px;
+    border-style: solid;
+    border-color:${({ theme }) => theme.text};
     display: flex;
     align-items: center;
     justify-content: center;

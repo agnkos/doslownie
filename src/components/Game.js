@@ -5,10 +5,11 @@ import Keypad from "./Keypad";
 import Modal from "./Modal";
 import Stats from "./Stats";
 import StyledModal from "./styles/Modal.styled";
+import Settings from "./Settings";
 
 export default function Game() {
 
-    const { handleKeyup, isSolution, turn, noGames, showAlert, showModal, setShowStats, showStats } = useContext(Context);
+    const { handleKeyup, isSolution, turn, noGames, showAlert, showModal, setShowStats, showStats, settings } = useContext(Context);
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyup);
@@ -28,6 +29,7 @@ export default function Game() {
                     </div>
                 </StyledModal>
             )}
+            {settings && <Settings />}
         </>
     )
 }

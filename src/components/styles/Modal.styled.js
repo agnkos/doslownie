@@ -10,16 +10,20 @@ const StyledModal = styled.div`
     display:flex;
     align-items: center;
     justify-items: center;
+    color: #070D0D;
 
 > div {
     max-width: 450px;
-    background: #fff;
+    background:${({ theme }) => theme.body};
+    color:${({ theme }) => theme.text};
     padding: 40px;
     border-radius: 10px;
     margin: 10% auto;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     z-index: 100;
+
+
 }
 .fa-circle-xmark{
     display: block;
@@ -27,7 +31,7 @@ const StyledModal = styled.div`
     margin-left: auto;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #070D0D;
+    color: ${({ theme }) => theme.text};
     cursor: pointer;
 }
 .solution {
