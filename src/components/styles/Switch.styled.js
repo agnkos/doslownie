@@ -12,7 +12,7 @@ height: 25px;
 padding: 5px;
 border-radius: 50px;
 background-color: #070D0D;
-background-color: ${({ theme }) => theme === 'dark' ? '#8ac926' : '#070D0D'};
+background-color: ${({ theme, colorblindMode }) => theme === 'dark' || colorblindMode ? '#8ac926' : '#BFCCB5'};
 
 input {
     position: absolute;
@@ -27,7 +27,7 @@ span {
     border-radius: 50%;
     background-color: white;
     transition: transform .15s linear;
-    transform: ${({ theme }) => theme === 'dark' ? 'translateX(24px)' : 'translateX(0px)'}
+    transform: ${({ theme, colorblindMode }) => theme === 'dark' || colorblindMode ? 'translateX(24px)' : 'translateX(0px)'}
 }
 
 `

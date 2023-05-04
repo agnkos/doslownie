@@ -15,15 +15,15 @@ const flip = (props) => keyframes`
 
   55% {
     transform: rotateX(90deg);
-    background-color: ${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : '#b7b7a4'};
-    border-color: ${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : '#b7b7a4'};
+    background-color: ${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : props === 'orange' ? '#e65100' : props === 'blue' ? '#2196f3' : '#b7b7a4'};
+    border-color: ${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : props === 'orange' ? '#e65100' : props === 'blue' ? '#2196f3' : '#b7b7a4'};
     color: #eee;
   }
 
   100% {
     transform: rotateX(0);
-    background-color:${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : '#b7b7a4'};
-    border-color:${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : '#b7b7a4'};
+    background-color:${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : props === 'orange' ? '#e65100' : props === 'blue' ? '#2196f3' : '#b7b7a4'};
+    border-color:${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : props === 'orange' ? '#e65100' : props === 'blue' ? '#2196f3' : '#b7b7a4'};
     color: #eee;
   }
 `
@@ -71,3 +71,6 @@ text-transform: uppercase;
 
 `
 export default StyledTile;
+
+
+// background-color: ${props === 'green' ? '#8ac926' : props === 'yellow' ? '#ffbe0b' : '#b7b7a4'};

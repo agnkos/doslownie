@@ -18,7 +18,9 @@ function ContextProvider({ children }) {
     }
     )
     const [isSolution, setIsSolution] = useState(false);
-    const [usedKeys, setUsedKeys] = useState({});
+    const [usedKeys, setUsedKeys] = useState(function () {
+        return JSON.parse(localStorage.getItem('wordleUsedKeys')) || {}
+    });
     const [stats, setStats] = useState(function () {
         return JSON.parse(localStorage.getItem('wordleStats')) || []
     });
@@ -28,7 +30,8 @@ function ContextProvider({ children }) {
     const [showModal, setShowModal] = useState(false);
     const [showStats, setShowStats] = useState(false);
     const [settings, setSettings] = useState(false);
-    const [theme, setTheme] = useState('light')
+    const [theme, setTheme] = useState('light');
+    const [colorblindMode, setColorblindMode] = useState(false);
 
     function startGame() {
         fetch('data.json')
@@ -205,6 +208,7 @@ function ContextProvider({ children }) {
         // przenieść stąd solution
         localStorage.setItem('wordleCurrentSolution', JSON.stringify(solution))
         localStorage.setItem('wordleCurrentTurn', JSON.stringify(turn))
+        localStorage.setItem('wordleUsedKeys', JSON.stringify(usedKeys))
     }, [currentGuess, turn]);
 
     useEffect(() => {
@@ -221,8 +225,8 @@ function ContextProvider({ children }) {
         console.log(solution)
         // console.log('stats:', stats)
         // console.log('modal', showModal)
-        // console.log(usedKeys)
-        // console.log(usedKeys)
+
+        console.log(usedKeys)
         console.log(turn)
         // console.log(currentGuess === solution)
         console.log('current guess', currentGuess, currentGuess.length)
@@ -231,7 +235,7 @@ function ContextProvider({ children }) {
 
 
     return (
-        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal, showStats, setShowStats, startGame, settings, setSettings, theme, setTheme }}>
+        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal, showStats, setShowStats, startGame, settings, setSettings, theme, setTheme, colorblindMode, setColorblindMode }}>
             {children}
         </Context.Provider>
     )

@@ -10,6 +10,7 @@ import { Context } from "./Context";
 export default function App() {
     const {theme} = useContext(Context);
     const isDarkTheme = theme === "dark";
+    
     return (
         <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
             <Container>

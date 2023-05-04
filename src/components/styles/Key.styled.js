@@ -19,13 +19,13 @@ const KeyStyled = styled.div`
 }
 
 &.green {
-    background-color: #8ac926;
-    border-color: #8ac926;
+    background-color: ${({ colorblindMode }) => colorblindMode ? '#e65100' : '#8ac926'};
+    border-color: ${({ colorblindMode }) => colorblindMode ? '#e65100' : '#8ac926'};
     color: #eee;
 } 
 &.yellow {
-    background-color: #ffbe0b;
-    border-color: #ffbe0b;
+    background-color: ${({ colorblindMode }) => colorblindMode ? '#2196f3' : ' #ffbe0b'};
+    border-color: ${({ colorblindMode }) => colorblindMode ? '#2196f3' : ' #ffbe0b'};
     color: #eee;
 } 
 &.gray {
