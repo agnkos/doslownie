@@ -8,15 +8,14 @@ const HeaderStyled = styled.div`
     align-items:center;
     justify-items: center;
 
-h1 {
-    margin-left: 28px;
-}
+
 
 .colored {
     color: #8ac926;
 }
 
 .fa-solid {
+    margin: 0 .5em;
     font-size: 2rem;
     color: #b7b7a4;
     cursor: pointer;
