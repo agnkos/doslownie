@@ -21,6 +21,7 @@ function ContextProvider({ children }) {
     const [usedKeys, setUsedKeys] = useState(function () {
         return JSON.parse(localStorage.getItem('wordleUsedKeys')) || {}
     });
+    const [oldKeys, setOldKeys] = useState({});
     const [stats, setStats] = useState(function () {
         return JSON.parse(localStorage.getItem('wordleStats')) || []
     });
@@ -52,6 +53,7 @@ function ContextProvider({ children }) {
                 setUsedKeys({});
                 setShowModal(false);
                 setShowStats(false);
+                setOldKeys({})
             })
     }
 
@@ -151,7 +153,9 @@ function ContextProvider({ children }) {
 
         setGuesses(prev => prev.map((guess, i) => turn === i ? { ...guess, formatted: checkedGuess } : guess));
 
+        // setOldKeys(usedKeys);
         setUsedKeys((prev) => {
+
             let newKeys = { ...prev };
             checkedGuess.forEach((l) => {
                 const currentColor = newKeys[l.key];
@@ -170,6 +174,26 @@ function ContextProvider({ children }) {
             })
             return newKeys;
         })
+
+        // setUsedKeys((prev) => {
+        //     let newKeys = { ...prev };
+        //     checkedGuess.forEach((l) => {
+        //         const currentColor = newKeys[l.key];
+        //         if (l.color === 'green') {
+        //             newKeys[l.key] = 'green';
+        //             return;
+        //         }
+        //         if (l.color === 'yellow' && currentColor !== 'green') {
+        //             newKeys[l.key] = 'yellow';
+        //             return;
+        //         }
+        //         if (l.color === 'gray' && currentColor !== 'green' && currentColor !== 'yellow') {
+        //             newKeys[l.key] = 'gray';
+        //             return;
+        //         }
+        //     })
+        //     return newKeys;
+        // })
 
 
         if (currentGuess === solution) {
@@ -200,6 +224,10 @@ function ContextProvider({ children }) {
     }
 
     useEffect(() => {
+        setOldKeys(usedKeys);
+    }, [usedKeys])
+
+    useEffect(() => {
         setGuesses(prev => {
             const updatedGuesses = prev.map((guess, i) => i === turn ? { ...guess, input: currentGuess, formatted: currentGuess.split('').map((lettter) => ({ key: lettter, color: '' })) } : guess);
             return updatedGuesses;
@@ -226,16 +254,17 @@ function ContextProvider({ children }) {
         // console.log('stats:', stats)
         // console.log('modal', showModal)
 
-        console.log(usedKeys)
-        console.log(turn)
+        console.log('usedkeys: ', usedKeys)
+        console.log('oldkeys: ', oldKeys)
+        // console.log(turn)
         // console.log(currentGuess === solution)
-        console.log('current guess', currentGuess, currentGuess.length)
+        // console.log('current guess', currentGuess, currentGuess.length)
         // console.log(JSON.parse(localStorage.getItem('currentGame')))
-    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame, showModal, currentGuess]);
+    }, [guesses, turn, stats, usedKeys, isSolution, solution, noGames, newGame, showModal, currentGuess, oldKeys]);
 
 
     return (
-        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal, showStats, setShowStats, startGame, settings, setSettings, theme, setTheme, colorblindMode, setColorblindMode }}>
+        <Context.Provider value={{ solution, handleKeyup, currentGuess, guesses, turn, handleClick, usedKeys, isSolution, setNewGame, noGames, showAlert, stats, showModal, setShowModal, showStats, setShowStats, startGame, settings, setSettings, theme, setTheme, colorblindMode, setColorblindMode, oldKeys, setOldKeys }}>
             {children}
         </Context.Provider>
     )
