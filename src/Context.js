@@ -5,7 +5,7 @@ const Context = createContext();
 
 function ContextProvider({ children }) {
     const [solution, setSolution] = useState(function () {
-        return JSON.parse(localStorage.getItem('wordleCurrentSolution')) || null
+        return JSON.parse(localStorage.getItem('wordleCurrentSolution')) || []
     }
     );
     const [solutionId, setSolutionId] = useState(null)
@@ -61,8 +61,9 @@ function ContextProvider({ children }) {
     }
 
     useEffect(() => {
-        if (!JSON.parse(localStorage.getItem('wordleCurrentGame'))) {
+        if (!JSON.parse(localStorage.getItem('wordleCurrentTurn')) || JSON.parse(localStorage.getItem('wordleCurrentTurn')) === 0) {
             startGame();
+            console.log('newgame')
         }
     }, [])
 
