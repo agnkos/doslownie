@@ -4,7 +4,10 @@ import dictionary from "./dictionary";
 const Context = createContext();
 
 function ContextProvider({ children }) {
-    const [solution, setSolution] = useState(JSON.parse(localStorage.getItem('wordleCurrentSolution')) || null);
+    const [solution, setSolution] = useState(function () {
+        return JSON.parse(localStorage.getItem('wordleCurrentSolution')) || null
+    }
+    );
     const [solutionId, setSolutionId] = useState(null)
     const [currentGuess, setCurrentGuess] = useState('');
     const [turn, setTurn] = useState(function () {
